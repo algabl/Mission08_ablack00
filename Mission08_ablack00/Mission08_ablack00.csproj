@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Project2_Group3_5</RootNamespace>
   </PropertyGroup>
 
 </Project>
