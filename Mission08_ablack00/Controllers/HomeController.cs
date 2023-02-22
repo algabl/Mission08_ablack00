@@ -1,15 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Mission08_ablack00.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Task = Mission08_ablack00.Models.Task;
 
 namespace Mission08_ablack00.Controllers
 {
     public class HomeController : Controller
     {
         
-        private ApplicationDbContext ApplicationDbContext { get; set; }
+        private TaskContext TaskContext { get; set; }
         
-        public HomeController(ApplicationDbContext context)
+        public HomeController(TaskContext context)
         {
-            ApplicationDbContext = context;
+            TaskContext = context;
         }
 
         public IActionResult Index()
@@ -19,7 +29,7 @@ namespace Mission08_ablack00.Controllers
 
         public IActionResult TaskList()
         {
-            var tasks = ApplicationDbContext.Tasks
+            var tasks = TaskContext.Tasks
                 .Include(x => x.Category)
                 .Where(x => x.Completed == false)
                 .ToList();
@@ -29,7 +39,7 @@ namespace Mission08_ablack00.Controllers
         [HttpGet]
         public IActionResult AddTask()
         {
-            ViewBag.Categories = ApplicationDbContext.Categories.ToList();
+            ViewBag.Categories = TaskContext.Categories.ToList();
             ViewData["Title"] = "Add Task";
             return View("AddEdit", new Task());
         }
@@ -39,22 +49,22 @@ namespace Mission08_ablack00.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationDbContext.Add(task);
-                ApplicationDbContext.SaveChanges();
+                TaskContext.Add(task);
+                TaskContext.SaveChanges();
                 // Have some form of alert, either a success screen or some other way
                 return RedirectToAction("TaskList");
             }
 
-            ViewBag.Categories = ApplicationDbContext.Categories.ToList();
+            ViewBag.Categories = TaskContext.Categories.ToList();
             return View(new Task());
         }
 
         [HttpGet]
         public IActionResult EditTask(int id)
         {
-            ViewBag.Categories = ApplicationDbContext.Categories.ToList();
+            ViewBag.Categories = TaskContext.Categories.ToList();
             ViewData["Title"] = "Edit Task";
-            var task = ApplicationDbContext.Tasks.Single(x => x.Id == id);
+            var task = TaskContext.Tasks.Single(x => x.TaskId == id);
             return View("AddEdit", task);
         }
 
@@ -63,30 +73,30 @@ namespace Mission08_ablack00.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationDbContext.Update(task);
-                ApplicationDbContext.SaveChanges();
+                TaskContext.Update(task);
+                TaskContext.SaveChanges();
                 // Again, some form of alert
                 return RedirectToAction("TaskList");
             }
 
-            ViewBag.Categories = ApplicationDbContext.Categories.ToList();
+            ViewBag.Categories = TaskContext.Categories.ToList();
             return View("AddEdit", task);
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var task = ApplicationDbContext.Tasks.Single(x => x.Id == id);
+            var task = TaskContext.Tasks.Single(x => x.TaskId == id);
             return View(task);
         }
 
         [HttpPost]
         public IActionResult Delete(Task task)
         {
-            task = ApplicationDbContext.Tasks.Single(x => x.Id == task.Id);
+            task = TaskContext.Tasks.Single(x => x.TaskId == task.TaskId);
             // Alert - depending on how we do this, needs to be done before the task is deleted
-            ApplicationDbContext.Tasks.Remove(task);
-            ApplicationDbContext.SaveChanges();
+            TaskContext.Tasks.Remove(task);
+            TaskContext.SaveChanges();
             return RedirectToAction("TaskList");
         }
 

@@ -1,6 +1,6 @@
 using System;
 
-namespace Mission08.Models
+namespace Mission08_ablack00.Models
 {
     public class ErrorViewModel
     {
