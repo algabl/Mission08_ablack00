@@ -5,37 +5,46 @@
     ViewData["Title"] = "Add Todo";
 }
 
-<form class="row gy-2 gx-3 align-items-center">
-    <input type="hidden" >
-    <div class="col-auto">
-        <label class="visually-hidden" >Name</label>
-        <input type="text" class="form-control" id="autoSizingInput" placeholder="Jane Doe">
+@model Mission08_ablack00.Models.Task
+
+<form class="row g-3" method="post">
+    <div class="col-md-6">
+        <label asp-for="TaskName" id="TaskName" class="form-label">Task Name</label>
+        <input asp-for="TaskName" type="text" class="form-control" id="TaskName">
     </div>
-    <div class="col-auto">
-        <label class="visually-hidden" for="autoSizingInputGroup">Username</label>
-        <div class="input-group">
-            <div class="input-group-text"></div>
-            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Username">
-        </div>
+    <div class="col-md-6">
+        <label asp-for="DueDate" for="DueDate" id="DueDate" class="form-label">Due Date</label>
+        <input type="date" class="form-control" id="DueDate">
     </div>
-    <div class="col-auto">
-        <label class="visually-hidden" for="autoSizingSelect">Preference</label>
-        <select class="form-select" id="autoSizingSelect">
-            <option selected>Choose...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+    <div class="col-md-4">
+        <label asp-for="Quadrant" class="form-label" for="Quadrant">Quadrant (Select one)</label>
+        <select asp-for="Quadrant" class="form-select" id="Quadrant">
+            <option selected>Select a Category...</option>
+            @for(int i = 1; i < 5; i++)
+            {
+            <option value="@i">@i</option>
+            }
         </select>
     </div>
-    <div class="col-auto">
+    <div class="col-md-4">
+        <label asp-for="CategoryId" class="form-label" for="CategoryId">Category (Select one)</label>
+        <select asp-for="CategoryId" class="form-select" id="CategoryId">
+            <option selected>Select a Category...</option>
+            @foreach(Category ca in ViewBag.Categories) 
+            {
+                <option value="@ca.CategoryID">@ca.CategoryName</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-4">
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="autoSizingCheck">
-            <label class="form-check-label" for="autoSizingCheck">
-                Remember me
+            <input asp-for="Completed" class="form-check-input" type="checkbox" id="Completed">
+            <label class="form-check-label" for="Completed">
+                Completed?
             </label>
         </div>
     </div>
-    <div class="col-auto">
-        <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Add Todo</button>
     </div>
 </form>
