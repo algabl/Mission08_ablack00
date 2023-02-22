@@ -17,77 +17,77 @@ namespace Mission08_ablack00.Controllers
             return View();
         }
 
-        public IActionResult TodoList()
+        public IActionResult TaskList()
         {
-            var todos = ApplicationDbContext.Todos
+            var tasks = ApplicationDbContext.Tasks
                 .Include(x => x.Category)
                 .Where(x => x.Completed == false)
                 .ToList();
-            return View(todos);
+            return View(tasks);
         }
 
         [HttpGet]
-        public IActionResult AddTodo()
+        public IActionResult AddTask()
         {
             ViewBag.Categories = ApplicationDbContext.Categories.ToList();
-            ViewData["Title"] = "Add Todo";
-            return View("AddEdit", new Todo());
+            ViewData["Title"] = "Add Task";
+            return View("AddEdit", new Task());
         }
 
         [HttpPost]
-        public IActionResult AddTodo(Todo todo)
+        public IActionResult AddTask(Task task)
         {
             if (ModelState.IsValid)
             {
-                ApplicationDbContext.Add(todo);
+                ApplicationDbContext.Add(task);
                 ApplicationDbContext.SaveChanges();
                 // Have some form of alert, either a success screen or some other way
-                return RedirectToAction("TodoList");
+                return RedirectToAction("TaskList");
             }
 
             ViewBag.Categories = ApplicationDbContext.Categories.ToList();
-            return View(new Todo());
+            return View(new Task());
         }
 
         [HttpGet]
-        public IActionResult EditTodo(int id)
+        public IActionResult EditTask(int id)
         {
             ViewBag.Categories = ApplicationDbContext.Categories.ToList();
-            ViewData["Title"] = "Edit Todo";
-            var todo = ApplicationDbContext.Todos.Single(x => x.Id == id);
-            return View("AddEdit", todo);
+            ViewData["Title"] = "Edit Task";
+            var task = ApplicationDbContext.Tasks.Single(x => x.Id == id);
+            return View("AddEdit", task);
         }
 
         [HttpPost]
-        public IActionResult EditTodo(Todo todo)
+        public IActionResult EditTask(Task task)
         {
             if (ModelState.IsValid)
             {
-                ApplicationDbContext.Update(todo);
+                ApplicationDbContext.Update(task);
                 ApplicationDbContext.SaveChanges();
                 // Again, some form of alert
-                return RedirectToAction("TodoList");
+                return RedirectToAction("TaskList");
             }
 
             ViewBag.Categories = ApplicationDbContext.Categories.ToList();
-            return View("AddEdit", todo);
+            return View("AddEdit", task);
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var todo = ApplicationDbContext.Todos.Single(x => x.Id == id);
-            return View(todo);
+            var task = ApplicationDbContext.Tasks.Single(x => x.Id == id);
+            return View(task);
         }
 
         [HttpPost]
-        public IActionResult Delete(Todo todo)
+        public IActionResult Delete(Task task)
         {
-            todo = ApplicationDbContext.Todos.Single(x => x.Id == todo.Id);
-            // Alert - depending on how we do this, needs to be done before the todo is deleted
-            ApplicationDbContext.Todos.Remove(todo);
+            task = ApplicationDbContext.Tasks.Single(x => x.Id == task.Id);
+            // Alert - depending on how we do this, needs to be done before the task is deleted
+            ApplicationDbContext.Tasks.Remove(task);
             ApplicationDbContext.SaveChanges();
-            return RedirectToAction("TodoList");
+            return RedirectToAction("TaskList");
         }
 
         public IActionResult Privacy()
