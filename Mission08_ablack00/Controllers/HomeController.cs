@@ -56,7 +56,7 @@ namespace Mission08_ablack00.Controllers
             }
 
             ViewBag.Categories = TaskContext.Categories.ToList();
-            return View(new Task());
+            return View("AddEdit",new Task());
         }
 
         [HttpGet]
