@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mission08_ablack00.Models
 {
@@ -11,7 +12,7 @@ namespace Mission08_ablack00.Models
         [Required]
         public string TaskName { get; set; }
 
-        public string DueDate { get; set; }
+        public DateTime DueDate { get; set; }
 
         [Required]
         [Range(1,4)]

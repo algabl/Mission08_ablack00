@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Mission08_ablack00.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using static System.DateTime;
 using Task = Mission08_ablack00.Models.Task;
 
 namespace Mission08_ablack00.Controllers
@@ -20,11 +20,6 @@ namespace Mission08_ablack00.Controllers
         public HomeController(TaskContext context)
         {
             TaskContext = context;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
 
         public IActionResult TaskList()
@@ -41,7 +36,11 @@ namespace Mission08_ablack00.Controllers
         {
             ViewBag.Categories = TaskContext.Categories.ToList();
             ViewData["Title"] = "Add Task";
-            return View("AddEdit", new Task());
+            Task task = new Task
+            {
+                DueDate = Now
+            };
+            return View("AddEdit", task);
         }
 
         [HttpPost]
