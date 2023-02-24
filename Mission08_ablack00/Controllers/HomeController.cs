@@ -22,11 +22,6 @@ namespace Mission08_ablack00.Controllers
             TaskContext = context;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult TaskList()
         {
             var tasks = TaskContext.Tasks
