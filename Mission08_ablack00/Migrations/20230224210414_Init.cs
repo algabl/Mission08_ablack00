@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mission08_ablack00.Migrations
 {
@@ -26,7 +27,7 @@ namespace Mission08_ablack00.Migrations
                     TaskId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     TaskName = table.Column<string>(nullable: false),
-                    DueDate = table.Column<string>(nullable: true),
+                    DueDate = table.Column<DateTime>(nullable: false),
                     Quadrant = table.Column<int>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
                     Completed = table.Column<bool>(nullable: false)

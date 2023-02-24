@@ -16,14 +16,14 @@
         </div>
         <div class="col-md-6">
             <label asp-for="DueDate" for="DueDate" id="DueDate" class="form-label">Due Date</label>
-            <input type="date" class="form-control" id="DueDate">
+            <input type="date" asp-for="DueDate" class="form-control" id="DueDate">
         </div>
     </div>
     <div class="row mb-3 g-3">
         <div class="col-md-4">
             <label asp-for="Quadrant" class="form-label" for="Quadrant">Quadrant (Select one)</label>
             <select asp-for="Quadrant" class="form-select" id="Quadrant">
-                <option selected>Select a Category...</option>
+                <option selected>Select a Quadrant...</option>
                 @for(int i = 1; i < 5; i++)
             {
                 <option value="@i">@i</option>
