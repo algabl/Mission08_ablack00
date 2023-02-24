@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "Tasks";
+}
+@model List<Mission08_ablack00.Models.Task>
+<div class="container">
+    <div class="row" style="border-bottom-style:solid; border-bottom-color:dodgerblue">
+        <div class="col-6" style="border-right-style:solid; border-right-color:dodgerblue">
+            <h4>Quadrant I: Important/Urgent</h4>
+            @foreach (var x in Model)
+            {
+                if (x.Completed == true && x.Quadrant == 1)
+                {
+                    <p>
+                        <div>@x.TaskName, @x.DueDate</div>
+                        <a asp-controller="Home" asp-action="EditTask" asp-route-id="@x.TaskId">Edit</a>
+                        <a asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a>
+                    </p>
+
+                }
+            }
+        </div>
+        <div class="col-6">
+            <h4>Quadrant II: Important/Not Urgent</h4>
+            @foreach (var x in Model)
+            {
+                if (x.Completed == true && x.Quadrant == 2)
+                {
+                    <p>
+                        <div>@x.TaskName, @x.DueDate</div>
+                        <a asp-controller="Home" asp-action="EditTask" asp-route-id="@x.TaskId">Edit</a>
+                        <a asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a>
+                    </p>
+
+                }
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6" style="border-right-style:solid; border-right-color:dodgerblue">
+            <h4>Quadrant III: Not Important/Urgent</h4>
+            @foreach (var x in Model)
+            {
+            if (x.Completed == true && x.Quadrant == 3)
+            {
+            <p>
+                <div>@x.TaskName, @x.DueDate</div>
+                <a asp-controller="Home" asp-action="EditTask" asp-route-id="@x.TaskId">Edit</a>
+                <a asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a>
+            </p>
+
+            }
+            }
+        </div>
+        <div class="col-6">
+            <h4>Quadrant IV: Not Important/Not Urgent</h4>
+            @foreach (var x in Model)
+            {
+            if (x.Completed == true && x.Quadrant == 4)
+            {
+            <p>
+                <div>@x.TaskName, @x.DueDate</div>
+                <a asp-controller="Home" asp-action="EditTask" asp-route-id="@x.TaskId">Edit</a>
+                <a asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a>
+            </p>
+
+            }
+            }
+        </div>
+    </div>
+
+</div>
