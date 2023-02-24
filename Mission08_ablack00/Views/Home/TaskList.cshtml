@@ -9,15 +9,11 @@
             <h4>Quadrant I: Important/Urgent</h4>
             @foreach (var x in Model)
             {
-                if (x.Completed == true && x.Quadrant == 1)
-                {
-                    <p>
-                        <div>@x.TaskName, @x.DueDate</div>
-                        <a asp-controller="Home" asp-action="EditTask" asp-route-id="@x.TaskId">Edit</a>
-                        <a asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a>
-                    </p>
-
-                }
+                <div>
+                    <p>@x.TaskName, @x.DueDate</p>
+                    <a asp-controller="Home" asp-action="EditTask" asp-route-id="@x.TaskId">Edit</a>
+                    <a asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a>
+                </div>
             }
         </div>
         <div class="col-6">
