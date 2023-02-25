@@ -3,9 +3,16 @@
     ViewData["Title"] = "Tasks";
 }
 @model List<Mission08_ablack00.Models.Task>
-<div class="container">
+
+<style>
+    .quadrant {
+        height: 250px;
+        width: 40%;
+    }
+</style>
+<div class="d-flex flex-wrap align-items-center justify-content-center mt-5">
     <div class="row" style="border-bottom-style:solid; border-bottom-color:dodgerblue">
-        <div class="col-6" style="border-right-style:solid; border-right-color:dodgerblue">
+        <div class="col quadrant" style="border-right-style:solid; border-right-color:dodgerblue">
             <h4>Quadrant I: Important/Urgent</h4>
             @foreach (var x in Model)
             {
@@ -22,7 +29,7 @@
                 
             }
         </div>
-        <div class="col-6">
+        <div class="col quadrant">
             <h4>Quadrant II: Important/Not Urgent</h4>
             @foreach (var x in Model)
             {
@@ -41,7 +48,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6" style="border-right-style:solid; border-right-color:dodgerblue">
+        <div class="col quadrant" style="border-right-style:solid; border-right-color:dodgerblue">
             <h4>Quadrant III: Not Important/Urgent</h4>
             @foreach (var x in Model)
             {
@@ -57,7 +64,7 @@
                 }
             }
         </div>
-        <div class="col-6">
+        <div class="col quadrant">
             <h4>Quadrant IV: Not Important/Not Urgent</h4>
             @foreach (var x in Model)
             {
