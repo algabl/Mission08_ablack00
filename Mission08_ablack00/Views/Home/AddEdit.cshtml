@@ -1,59 +1,55 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-    ViewData["Title"] = "Add Todo";
-}
 
 @model Mission08_ablack00.Models.Task
 
 <form class="row mb-3 g-3" method="post">
-    <input type="hidden" asp-for="TaskId"/>
-    <div class="row g-3">
-        <div asp-validation-summary="All"></div>
-        <div class="col-md-6">
-            <label asp-for="TaskName" id="TaskName" class="form-label">Task Name</label>
-            <input asp-for="TaskName" type="text" class="form-control" id="TaskName">
-        </div>
-        <div class="col-md-6">
-            <label asp-for="DueDate" for="DueDate" id="DueDate" class="form-label">Due Date</label>
-            <input type="date" asp-for="DueDate" class="form-control" id="DueDate">
-        </div>
+<input type="hidden" asp-for="TaskId"/>
+<div class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="TaskName" id="TaskName" class="form-label">Task Name</label>
+        <input asp-for="TaskName" type="text" class="form-control" id="TaskName">
     </div>
-    <div class="row mb-3 g-3">
-        <div class="col-md-4">
-            <label asp-for="Quadrant" class="form-label" for="Quadrant">Quadrant (Select one)</label>
-            <select asp-for="Quadrant" class="form-select" id="Quadrant">
-                <option selected>Select a Quadrant...</option>
-                @for(int i = 1; i < 5; i++)
+    <div class="col-md-6">
+        <label asp-for="DueDate" for="DueDate" id="DueDate" class="form-label">Due Date</label>
+        <input type="date" asp-for="DueDate" class="form-control" id="DueDate">
+    </div>
+</div>
+<div class="row mb-3 g-3">
+    <div class="col-md-4">
+        <label asp-for="Quadrant" class="form-label" for="Quadrant">Quadrant (Select one)</label>
+        <select asp-for="Quadrant" class="form-select" id="Quadrant">
+            <option selected>Select a Quadrant...</option>
+            @for (int i = 1; i < 5; i++)
             {
                 <option value="@i">@i</option>
             }
-            </select>
-        </div>
-        <div class="col-md-4">
-            <label asp-for="CategoryId" class="form-label" for="CategoryId">Category (Select one)</label>
-            <select asp-for="CategoryId" class="form-select" id="CategoryId">
-                <option selected>Select a Category...</option>
-                @foreach(Category ca in ViewBag.Categories)
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="CategoryId" class="form-label" for="CategoryId">Category (Select one)</label>
+        <select asp-for="CategoryId" class="form-select" id="CategoryId">
+            <option selected>Select a Category...</option>
+            @foreach (Category ca in ViewBag.Categories)
             {
                 <option value="@ca.CategoryId">@ca.CategoryName</option>
             }
-            </select>
-        </div>
-        <div class="col-md-4">
-            <div class="form-check">
-                <input asp-for="Completed" class="form-check-input" type="checkbox" id="Completed">
-                <label class="form-check-label" for="Completed">
-                    Completed?
-                </label>
-            </div>
+        </select>
+    </div>
+    <div class="col-md-4">
+        <div class="form-check">
+            <input asp-for="Completed" class="form-check-input" type="checkbox" id="Completed">
+            <label class="form-check-label" for="Completed">
+                Completed?
+            </label>
         </div>
     </div>
-    <div class="row g-3">
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Add Todo</button>
+</div>
+<div class="row g-3">
+<div class="col-12">
+<button type="submit" class="btn btn-primary">@ViewData["Title"]</button>
         </div>
     </div>
-    
+    <div asp-validation-summary="All"></div>
 </form>

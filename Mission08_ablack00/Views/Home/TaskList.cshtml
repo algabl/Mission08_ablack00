@@ -20,7 +20,7 @@
                 {
                     <div>
                         <p>
-                            @x.TaskName, @x.DueDate.Date
+                            @x.TaskName, @x.DueDate.ToShortDateString()
                             <a asp-controller="Home" asp-action="EditTask" asp-route-id="@x.TaskId">Edit</a>
                             <a asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a>
                         </p>
@@ -37,7 +37,7 @@
                 {
                     <div>
                         <p>
-                            @x.TaskName, @x.DueDate.Date
+                            @x.TaskName, @x.DueDate.ToShortDateString()
                             <a asp-controller="Home" asp-action="EditTask" asp-route-id="@x.TaskId">Edit</a>
                             <a asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a>
                         </p>
@@ -56,7 +56,7 @@
                 {
                     <div>
                         <p>
-                            @x.TaskName, @x.DueDate.Date
+                            @x.TaskName, @x.DueDate.ToShortDateString()
                             <a asp-controller="Home" asp-action="EditTask" asp-route-id="@x.TaskId">Edit</a>
                             <a asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a>
                         </p>
@@ -72,12 +72,11 @@
                 {
                     <div>
                         <p>
-                            @x.TaskName, @x.DueDate.Date
+                            @x.TaskName, @x.DueDate.ToShortDateString()
                             <a asp-controller="Home" asp-action="EditTask" asp-route-id="@x.TaskId">Edit</a>
                             <a asp-controller="Home" asp-action="Delete" asp-route-id="@x.TaskId">Delete</a>
                         </p>
                     </div>
-
                 }
             }
         </div>

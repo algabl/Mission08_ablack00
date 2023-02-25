@@ -98,11 +98,5 @@ namespace Mission08_ablack00.Controllers
             TaskContext.SaveChanges();
             return RedirectToAction("TaskList");
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
     }
 }
